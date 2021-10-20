@@ -16,7 +16,11 @@
                           </thead>
                           <tbody>
                               <tr v-for="post in posts" :key="post.id">
-                                     <td>{{ post.title }}</td>
+                                     <td>{{ post.title.substr(0, 20) + '...' }}</td>
+                                     <td>{{ post.description.substr(0, 30) + '...' }}</td>
+                                     <td><img :src="post.image" :style="imageStyle" loading="lazy"></td>
+                                     <td v-if="post.status===1">Published</td>
+                                     <td v-else>Pending</td>
                               </tr>
                           </tbody>
                       </table>
@@ -31,7 +35,11 @@
     export default {
         data(){
              return{
-                  posts: []
+                  posts: [],
+                  imageStyle:{
+                       'height': 40 + 'px', 
+                       'width': 40 + 'px', 
+                  }
              }
         },
 

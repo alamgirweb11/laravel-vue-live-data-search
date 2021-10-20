@@ -1937,10 +1937,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      imageStyle: {
+        'height': 40 + 'px',
+        'width': 40 + 'px'
+      }
     };
   },
   mounted: function mounted() {
@@ -37637,7 +37645,24 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.posts, function(post) {
                   return _c("tr", { key: post.id }, [
-                    _c("td", [_vm._v(_vm._s(post.title))])
+                    _c("td", [
+                      _vm._v(_vm._s(post.title.substr(0, 20) + "..."))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(post.description.substr(0, 30) + "..."))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("img", {
+                        style: _vm.imageStyle,
+                        attrs: { src: post.image, loading: "lazy" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    post.status === 1
+                      ? _c("td", [_vm._v("Published")])
+                      : _c("td", [_vm._v("Pending")])
                   ])
                 }),
                 0
