@@ -1941,6 +1941,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1948,13 +1955,21 @@ __webpack_require__.r(__webpack_exports__);
       imageStyle: {
         'height': 40 + 'px',
         'width': 40 + 'px'
-      }
+      },
+      ErrorText: {
+        'text-center': true,
+        'text-danger': true,
+        'font-weight-bolder': true
+      },
+      search_title: '',
+      search_result: ''
     };
   },
   mounted: function mounted() {
     this.getAllPost();
   },
   methods: {
+    // show all data in table
     getAllPost: function getAllPost() {
       var allPosts = this;
       axios.get('/all-post').then(function (response) {
@@ -1962,6 +1977,25 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    // search data by post title
+    getSearchData: function getSearchData(val) {
+      var allPosts = this;
+      axios.get('/search', {
+        params: {
+          search: val
+        }
+      }).then(function (response) {
+        allPosts.posts = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
+  watch: {
+    // typing value count
+    search_title: function search_title(val) {
+      this.getSearchData(val);
     }
   }
 });
@@ -37638,8 +37672,39 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "input-group mb-3" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.search_title,
+                    expression: "search_title"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  placeholder: "Type title",
+                  "aria-label": "Recipient's username",
+                  "aria-describedby": "button-addon2"
+                },
+                domProps: { value: _vm.search_title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.search_title = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm._m(0)
+            ]),
+            _vm._v(" "),
             _c("table", { staticClass: "table table-border" }, [
-              _vm._m(0),
+              _vm._m(1),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -37667,7 +37732,13 @@ var render = function() {
                 }),
                 0
               )
-            ])
+            ]),
+            _vm._v(" "),
+            !_vm.posts.length
+              ? _c("div", { class: _vm.ErrorText }, [
+                  _vm._v("Search result not found!")
+                ])
+              : _vm._e()
           ])
         ])
       ])
@@ -37675,6 +37746,21 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-append" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-outline-secondary",
+          attrs: { type: "button", id: "button-addon2" }
+        },
+        [_vm._v("Search")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

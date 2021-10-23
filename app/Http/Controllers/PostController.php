@@ -18,6 +18,11 @@ class PostController extends Controller
         return response()->json($posts);
     }
 
+    public function search_by_title(Request $request){
+            $searchResults = Post::where('title', 'LIKE', '%' .$request->search. '%')->get();
+             return response()->json($searchResults);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

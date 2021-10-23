@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::get('/all-post', 'PostController@index');
+Route::get('/search', 'PostController@search_by_title');
