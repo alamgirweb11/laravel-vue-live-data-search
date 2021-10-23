@@ -6,10 +6,10 @@
                     <div class="card-header">Laravel Vue Real Time Data Search</div>
                     <div class="card-body">
                         <div class="input-group mb-3">
-                        <input type="text" class="form-control" v-model="search_title" placeholder="Type title" aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <div class="input-group-append">
+                        <input type="text" class="form-control" v-model="search_title" placeholder="Type title" aria-label="Type title" aria-describedby="button-addon2">
+                        <!-- <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-                        </div>
+                        </div> -->
                         </div>
                          <table class="table table-border">
                           <thead>

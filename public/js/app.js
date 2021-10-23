@@ -37686,7 +37686,7 @@ var render = function() {
                 attrs: {
                   type: "text",
                   placeholder: "Type title",
-                  "aria-label": "Recipient's username",
+                  "aria-label": "Type title",
                   "aria-describedby": "button-addon2"
                 },
                 domProps: { value: _vm.search_title },
@@ -37698,13 +37698,11 @@ var render = function() {
                     _vm.search_title = $event.target.value
                   }
                 }
-              }),
-              _vm._v(" "),
-              _vm._m(0)
+              })
             ]),
             _vm._v(" "),
             _c("table", { staticClass: "table table-border" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -37746,21 +37744,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-append" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-secondary",
-          attrs: { type: "button", id: "button-addon2" }
-        },
-        [_vm._v("Search")]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
